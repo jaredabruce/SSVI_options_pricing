@@ -74,9 +74,9 @@ This project demonstrates how to:
 
 Run ```visualize_extended_ssvi.py``` to produce plots.
 
-![Example 2D Chart (Slices)](https://file%2B.vscode-resource.vscode-cdn.net/Users/jaredbruce/Desktop/2D.png?version%3D1735672159292)
 
-![Example 3D Chart (Surface)](https://file%2B.vscode-resource.vscode-cdn.net/Users/jaredbruce/Desktop/3d.png?version%3D1735672197639)
+![Example 2D Chart (Slices)](https://github.com/jaredabruce/SSVI_options_pricing/Images/2D.png)
+![Example 3D Chart (Surface)](https://github.com/jaredabruce/SSVI_options_pricing/Images/3D.png )
 
 ### 4.4 Price an Option
 
