@@ -1,5 +1,6 @@
-# Extended SSVI Volatility Surface Project
+# Extended SSVI Volatility Surface
 Author: Jared Bruce
+
 Data: End-of-Day SPY Historical Options from 2020-2022
 
 ## 1. Overview
@@ -48,4 +49,47 @@ This project demonstrates how to:
     * Optionally fetches live spot from yfinance (or you can provide a custom spot).
     * Computes the implied volatility from the Extended SSVI formula and prices the option with Black–Scholes.
 
+## 3 Installation & Setup
 
+1. Clone this repository (or copy the files locally).
+2. Install dependencies: ```pip install -r requirements.txt``` or ```pip install pandas numpy scipy yfinance tqdm matplotlib```
+3. Obtain or place your raw options CSV in the repository, e.g. ```raw_spy_options_2020_2022.csv```.
+
+## 4 Usage
+
+### 4.1 Data Cleaning
+
+```python data_cleaning.py raw_spy_options_2020_2022.csv```
+* Shows a progress bar while reading large files.
+* Produces ```options_cleaned.csv```.
+
+### 4.2 Train Extended SSVI
+
+```python train_extended_ssvi.py options_cleaned.csv extended_ssvi_params.csv```
+* Reads ```options_cleaned.csv```.
+* Calibrates global Extended SSVI parameters.
+* Saves them in ```extended_ssvi_params.csv```.
+
+### 4.3 Visualize the Surface
+
+Run ```visualize_extended_ssvi.py``` to produce plots.
+
+![Example 2D Chart (Slices)](https://file%2B.vscode-resource.vscode-cdn.net/Users/jaredbruce/Desktop/2D.png?version%3D1735672159292)
+
+![Example 3D Chart (Surface)](https://file%2B.vscode-resource.vscode-cdn.net/Users/jaredbruce/Desktop/3d.png?version%3D1735672197639)
+
+### 4.4 Price an Option
+
+``` python price_option_with_extended_ssvi.py 420 2024-06-21 C```
+* Fetches the latest SPY spot from yfinance (or fallback).
+* Uses ```extended_ssvi_params.csv``` to compute the implied volatility at the given strike & maturity.
+* Prints out a Black–Scholes call price.
+(Adjust the command to specify a custom spot: ```python price_option_with_extended_ssvi.py 420 2024-06-21 C 410`` if you want S = 410.)
+
+## 5. Project Notes & Limitations
+
+1. Data Source: This example uses EOD SPY historical options from 2020–2022.
+2. No Dividends: We assume a zero-dividend / basic carry approach. Real equity index modeling typically uses forward prices or dividend assumptions.
+3. Simplified Extended SSVI: We parametrize θ(T)=a<sub>0</sub> + a<sub>1</sub>T. Real desks often use piecewise functions or splines for θ(T), ρ(T), η(T).
+4. Arbitrage: The single-slice SSVI formula ensures no strike arbitrage, while enforcing a<sub>1</sub> ≥ 0 partially addresses calendar arbitrage. For fully robust calibrations, more advanced monotonic constraints or global fits might be needed.
+5. Performance: The scripts use tqdm for progress bars and chunked reading to handle large CSVs. If you have tens of millions of rows, you might consider a database approach or more optimized libraries.
