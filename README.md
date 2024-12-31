@@ -77,7 +77,7 @@ Run ```visualize_extended_ssvi.py``` to produce plots.
 
 ![Example 2D Chart (Slices)](/Images/2D.png)
 
-![Example 3D Chart (Surface)](https://github.com/jaredabruce/raw/main/SSVI_options_pricing/Images/3D.png)
+![Example 3D Chart (Surface)](/Images/3D.png)
 
 ### 4.4 Price an Option
 
