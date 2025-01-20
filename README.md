@@ -85,7 +85,7 @@ Run ```visualize_extended_ssvi.py``` to produce plots.
 * Fetches the latest SPY spot from yfinance (or fallback).
 * Uses ```extended_ssvi_params.csv``` to compute the implied volatility at the given strike & maturity.
 * Prints out a Black–Scholes call price.
-(Adjust the command to specify a custom spot: ```python price_option_with_extended_ssvi.py 420 2024-06-21 C 410`` if you want S = 410.)
+(Adjust the command to specify a custom spot: ```python price_option_with_extended_ssvi.py 420 2024-06-21 C 410``` if you want S = 410.)
 
 ## 5. Project Notes & Limitations
 
